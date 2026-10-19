@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#260d2b">
+<title>Untuk Kamu, Cintaku 💗</title>
+<style>
+:root{--bg:#180b20;--panel:#2a1231;--pink:#ff79a9;--rose:#ffb5cc;--gold:#ffd9a0;--text:#fff1f7;--muted:#d9b9ce}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% 0%,#542044 0%,#260f2d 45%,#120818 100%);color:var(--text);font-family:Georgia,'Times New Roman',serif;overflow-x:hidden;min-height:100vh}
+button,input{font:inherit}button{cursor:pointer;border:0;transition:transform .2s,filter .2s}button:hover{transform:translateY(-2px);filter:brightness(1.08)}
+#stars,#fireworks{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}#stars{z-index:0}#fireworks{z-index:8}
+main{position:relative;z-index:1}.hero{min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:36px 18px;position:relative}
+.hero-inner{max-width:850px}.kicker{font-family:Arial,sans-serif;letter-spacing:4px;text-transform:uppercase;color:var(--rose);font-size:.72rem}
+.heart{font-size:clamp(4rem,12vw,7rem);display:block;margin:20px auto 8px;filter:drop-shadow(0 0 28px #ff79a966);animation:heartbeat 2s infinite}
+h1{font-size:clamp(2.8rem,9vw,6.6rem);line-height:.98;font-weight:normal;margin:18px 0;color:#fff0f5;text-shadow:0 0 35px #ff79a933}
+h1 em{color:var(--pink);font-weight:normal}.subtitle{font-size:clamp(1rem,2.8vw,1.3rem);line-height:1.8;color:var(--muted);max-width:650px;margin:22px auto}
+.btns{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:28px 0}.btn{border-radius:999px;padding:14px 22px;font-family:Arial,sans-serif;font-size:.92rem;font-weight:bold}.btn-main{color:#40152e;background:linear-gradient(120deg,#ffc1d5,#ff7ca9);box-shadow:0 8px 30px #ff79a933}.btn-ghost{color:#ffe8f1;border:1px solid #ffb5cc77;background:#ffffff08}
+.scroll-hint{font: .8rem Arial,sans-serif;color:#caa7c1;letter-spacing:2px;margin-top:45px}
+section.content{max-width:1000px;margin:0 auto;padding:64px 20px}.section-title{text-align:center;font-size:clamp(2rem,5vw,3.2rem);font-weight:normal;margin:0 0 14px}.section-title em{color:var(--pink);font-weight:normal}.section-desc{text-align:center;color:var(--muted);font:1rem/1.7 Arial,sans-serif;max-width:620px;margin:0 auto 34px}
+.panel{background:linear-gradient(145deg,#ffffff0e,#ffffff05);border:1px solid #ffb5cc28;border-radius:26px;padding:clamp(22px,5vw,42px);box-shadow:0 20px 70px #0002}
+.message{text-align:center;font-size:clamp(1.05rem,2.5vw,1.3rem);line-height:2;color:#f8dce9;white-space:pre-line}
+.signature{font-style:italic;color:var(--rose);font-size:1.25rem;margin-top:24px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.photo{aspect-ratio:3/4;border-radius:20px;border:1px dashed #ffb5cc77;background:linear-gradient(160deg,#542044,#28132f);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px;position:relative;overflow:hidden}
+.photo .emoji{font-size:3rem;margin-bottom:12px}.photo p{font: .9rem/1.6 Arial,sans-serif;color:#e5c2d7}
+.photo img{position:absolute;width:100%;height:100%;inset:0;object-fit:cover;display:none}.photo.has-image img{display:block}.photo.has-image .placeholder{display:none}
+.upload-label{display:inline-block;margin:18px auto 0;background:#ffffff10;color:#ffe6f0;border:1px solid #ffb5cc66;border-radius:999px;padding:12px 18px;font: .9rem Arial,sans-serif;cursor:pointer}
+#photoInput{display:none}.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:620px;margin:28px auto 0}
+.timebox{border-radius:18px;padding:18px 8px;background:#ffffff0b;border:1px solid #ffb5cc2b;text-align:center}.timebox strong{display:block;color:var(--pink);font:clamp(1.8rem,5vw,3rem) Arial,sans-serif}.timebox span{font: .72rem Arial,sans-serif;letter-spacing:1px;color:var(--muted);text-transform:uppercase}
+.count-note{text-align:center;color:var(--muted);font: .9rem/1.7 Arial,sans-serif;margin-top:18px}
+.letter-wrap{text-align:center}.envelope{font-size:5rem;display:block;filter:drop-shadow(0 0 20px #ff79a933);animation:float 3s ease-in-out infinite}.letter{display:none;text-align:left;margin-top:25px;padding:clamp(20px,4vw,36px);border-radius:18px;background:#fff0f5;color:#592341;line-height:1.9;font-size:1.08rem;animation:appear .6s ease}.letter.open{display:block}.letter h3{text-align:center;font-size:1.8rem;font-weight:normal;color:#bd3d76}.letter .sign{text-align:right;font-style:italic;color:#bd3d76}
+footer{text-align:center;padding:35px 20px 55px;color:#bd9bb5;font: .8rem Arial,sans-serif}footer span{color:var(--pink)}
+.toast{position:fixed;z-index:10;bottom:20px;left:50%;transform:translateX(-50%);background:#fff0f5;color:#542044;border-radius:999px;padding:12px 18px;font: .9rem Arial,sans-serif;box-shadow:0 10px 30px #0003;display:none;max-width:90%;text-align:center}
+@keyframes heartbeat{0%,100%{transform:scale(1)}8%{transform:scale(1.1)}16%{transform:scale(1)}24%{transform:scale(1.07)}32%{transform:scale(1)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:650px){.grid{grid-template-columns:1fr;max-width:390px;margin:auto}.photo{aspect-ratio:4/3}.countdown{gap:7px}.timebox{padding:15px 3px}.timebox span{font-size:.62rem}.kicker{letter-spacing:2px}.scroll-hint{margin-top:30px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important}}
+
+#lockScreen{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(ellipse at top,#622447,#260d2b 58%,#120818);transition:opacity .6s,visibility .6s}
+#lockScreen.unlocked{opacity:0;visibility:hidden;pointer-events:none}
+.lock-card{width:min(430px,100%);text-align:center;padding:clamp(26px,6vw,42px);border:1px solid #ffb5cc55;border-radius:28px;background:#ffffff0c;box-shadow:0 25px 90px #0005;backdrop-filter:blur(12px)}
+.lock-heart{font-size:4rem;display:block;animation:heartbeat 2s infinite}
+.lock-card h2{font-size:2rem;font-weight:normal;margin:14px 0;color:#ffb5cc}
+.lock-card p{font: .95rem/1.7 Arial,sans-serif;color:#e5c2d7}
+#passwordInput{width:100%;padding:14px 16px;border:1px solid #ffb5cc77;border-radius:14px;background:#1d0c25;color:#fff;text-align:center;font:1rem Arial,sans-serif;outline:none;margin:10px 0 14px}
+#passwordInput:focus{border-color:#ff79a9;box-shadow:0 0 0 3px #ff79a922}
+#unlockBtn{width:100%}
+#wrongMsg{min-height:28px;color:#ffb5cc;font: .9rem Arial,sans-serif;margin-top:12px}
+.lock-card.shake{animation:wrongShake .48s ease}
+.lock-card.shake .lock-heart{animation:funnyBounce .55s ease}
+@keyframes wrongShake{0%,100%{transform:translateX(0) rotate(0)}15%{transform:translateX(-10px) rotate(-2deg)}30%{transform:translateX(10px) rotate(2deg)}45%{transform:translateX(-8px) rotate(-2deg)}60%{transform:translateX(8px) rotate(2deg)}75%{transform:translateX(-4px)}}
+@keyframes funnyBounce{0%{transform:scale(1) rotate(0)}25%{transform:scale(1.3) rotate(-18deg)}50%{transform:scale(.8) rotate(18deg)}75%{transform:scale(1.15) rotate(-8deg)}100%{transform:scale(1) rotate(0)}}
+
+
+/* ✨ Premium cute enhancements */
+:root{--glass:rgba(255,255,255,.075)}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:linear-gradient(115deg,transparent 20%,rgba(255,190,220,.035) 45%,transparent 70%);background-size:220% 100%;animation:aurora 18s linear infinite}
+@keyframes aurora{to{background-position:-220% 0}}
+#progressBar{position:fixed;top:0;left:0;width:0;height:4px;z-index:30;background:linear-gradient(90deg,#ff79a9,#ffd9a0,#ffb5cc);box-shadow:0 0 14px #ff79a9;transition:width .12s}
+#floaties{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:2}
+.floaty{position:absolute;bottom:-50px;opacity:0;animation:floatUp linear forwards;filter:drop-shadow(0 0 7px #ffb5cc55)}
+@keyframes floatUp{0%{transform:translateY(0) rotate(0) scale(.7);opacity:0}12%{opacity:.72}85%{opacity:.55}100%{transform:translateY(-115vh) rotate(35deg) scale(1.2);opacity:0}}
+.panel,.photo,.timebox,.lock-card{backdrop-filter:blur(14px)}
+.panel{transition:transform .35s,border-color .35s,box-shadow .35s}.panel:hover{border-color:#ffb5cc55;box-shadow:0 24px 75px #0003}
+.photo{box-shadow:0 12px 32px #0002;transition:transform .3s,border-color .3s}.photo:hover{transform:translateY(-6px) rotate(-.5deg);border-color:#ffb5cc}
+.photo.has-image:after{content:"♡";position:absolute;right:12px;top:10px;font-size:1.5rem;color:white;text-shadow:0 2px 10px #000;pointer-events:none}
+.btn-main{position:relative;overflow:hidden}.btn-main:after{content:"";position:absolute;top:-80%;left:-40%;width:25%;height:260%;background:#ffffff80;transform:rotate(25deg);transition:left .6s}.btn-main:hover:after{left:130%}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+#surpriseBtn{margin:12px 0 0}.surprise-note{display:none;margin:20px auto 0;max-width:650px;padding:20px;border:1px solid #ffb5cc55;border-radius:20px;background:#ffffff0a;color:#ffe5ef;line-height:1.8;animation:appear .6s ease}.surprise-note.show{display:block}
+.photo-help{font: .82rem/1.6 Arial,sans-serif;color:var(--muted);margin-top:8px}
+@media(max-width:650px){section.content{padding:48px 16px}.hero{padding:30px 17px}.panel{border-radius:22px}.btn{padding:13px 18px}}
+@media(prefers-reduced-motion:reduce){body:before{animation:none}.floaty{display:none}.reveal{opacity:1;transform:none;transition:none}}
+
+
+/* Extra dreamy animations: petals, shimmer, floating cards and gentle pulse */
+.hero-inner{animation:heroEntrance 1.15s cubic-bezier(.2,.75,.25,1) both}
+@keyframes heroEntrance{from{opacity:0;transform:translateY(28px) scale(.97);filter:blur(5px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+.section-title{animation:titleGlow 4s ease-in-out infinite alternate}
+@keyframes titleGlow{from{text-shadow:0 0 0 #ff79a900}to{text-shadow:0 0 18px #ff79a944}}
+.hero:after{content:'✦  ·  ✧  ·  ✦';position:absolute;bottom:8%;left:50%;transform:translateX(-50%);font-size:1rem;letter-spacing:1.2rem;color:#ffc1d5;opacity:.55;animation:twinkleLine 3s ease-in-out infinite}
+@keyframes twinkleLine{0%,100%{opacity:.25;transform:translateX(-50%) translateY(0)}50%{opacity:.9;transform:translateX(-50%) translateY(-5px)}}
+.heart{animation:heartbeat 2s infinite,heartGlow 3s ease-in-out infinite alternate}
+@keyframes heartGlow{from{filter:drop-shadow(0 0 10px #ff79a955)}to{filter:drop-shadow(0 0 32px #ff79a9bb)}}
+.envelope{animation:float 3s ease-in-out infinite, envelopeWiggle 5s ease-in-out infinite}
+@keyframes envelopeWiggle{0%,88%,100%{rotate:0deg}91%{rotate:-7deg}94%{rotate:7deg}97%{rotate:-4deg}}
+.timebox{transition:transform .25s,background .25s;animation:softBob 4s ease-in-out infinite}
+.timebox:nth-child(2){animation-delay:.4s}.timebox:nth-child(3){animation-delay:.8s}.timebox:nth-child(4){animation-delay:1.2s}
+@keyframes softBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.timebox:hover{transform:translateY(-5px) scale(1.03);background:#ffb5cc18}
+.photo:before{content:'✧';position:absolute;z-index:2;top:10px;left:12px;color:#fff0f5;font-size:1.4rem;opacity:0;transition:opacity .3s;pointer-events:none}.photo:hover:before{opacity:1;animation:twinkle 1s infinite alternate}
+@keyframes twinkle{from{transform:scale(.7) rotate(0);opacity:.45}to{transform:scale(1.25) rotate(18deg);opacity:1}}
+#sparkleLayer{position:fixed;inset:0;z-index:12;pointer-events:none;overflow:hidden}
+.click-spark{position:absolute;animation:sparkPop .8s ease-out forwards;font-size:18px;filter:drop-shadow(0 0 6px #ffb5cc)}
+@keyframes sparkPop{0%{opacity:0;transform:translate(-50%,-50%) scale(.2) rotate(0)}20%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.2) rotate(90deg)}}
+.confetti{position:fixed;top:-20px;z-index:11;pointer-events:none;animation:confettiFall linear forwards}
+@keyframes confettiFall{to{transform:translate3d(var(--drift),110vh,0) rotate(720deg);opacity:.1}}
+.lock-card{animation:lockFloat 5s ease-in-out infinite}
+@keyframes lockFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@media(prefers-reduced-motion:reduce){.hero-inner,.section-title,.hero:after,.heart,.envelope,.timebox,.lock-card{animation:none!important}#sparkleLayer,.confetti{display:none!important}}
+
+
+/* Bunga berbentuk hati muncul saat kata sandi benar */
+.love-bloom{position:fixed;inset:0;z-index:25;display:grid;place-items:center;pointer-events:none;opacity:0;visibility:hidden;background:radial-gradient(ellipse at center,rgba(62,15,48,.78),rgba(18,8,24,.94));}
+.love-bloom.show{visibility:visible;animation:bloomBackdrop 4.8s ease forwards}
+.bloom-caption{position:absolute;top:calc(50% + 150px);width:100%;text-align:center;color:#ffe5ef;font:italic 1rem Georgia,serif;letter-spacing:2px;opacity:0;text-shadow:0 0 16px #ff79a9;animation:captionBloom 4.4s ease forwards}
+.bloom-flower{position:absolute;left:50%;top:50%;font-size:clamp(20px,4vw,34px);opacity:0;filter:drop-shadow(0 0 10px #ff8eb8);transform:translate(-50%,-50%) scale(.1);animation:flowerHeart 2.7s cubic-bezier(.17,.75,.25,1) forwards;animation-delay:var(--delay);}
+@keyframes flowerHeart{0%{opacity:0;transform:translate(-50%,-50%) scale(.1) rotate(-35deg)}18%{opacity:1}72%{opacity:1;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1.15) rotate(12deg)}100%{opacity:0;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(.75) rotate(25deg)}}
+@keyframes bloomBackdrop{0%{opacity:0}12%,72%{opacity:1}100%{opacity:0;visibility:hidden}}
+@keyframes captionBloom{0%,28%{opacity:0;transform:translateY(10px)}45%,75%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-6px)}}
+@media(max-width:520px){.bloom-caption{top:calc(50% + 125px)}.bloom-flower{font-size:24px}}
+@media(prefers-reduced-motion:reduce){.love-bloom.show,.bloom-flower,.bloom-caption{animation-duration:.01ms!important}}
+
+
+/* PIN keypad, song picker, animated letter, playful mini game, polaroid gallery */
+#passwordInput{letter-spacing:12px;font-size:1.35rem;max-width:245px;margin-bottom:6px;pointer-events:none}
+.pin-dots{display:flex;justify-content:center;gap:12px;margin:8px 0 18px}.pin-dots i{width:11px;height:11px;border-radius:50%;border:1px solid #ffb5cc;background:#ffffff0b;transition:transform .2s,background .2s}.pin-dots i.filled{background:#ff9cbe;box-shadow:0 0 12px #ff79a9;transform:scale(1.18)}
+.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;max-width:270px;margin:0 auto 16px}.pin-pad button{height:48px;border-radius:15px;color:#ffeaf2;background:linear-gradient(145deg,#ffffff18,#ffffff08);border:1px solid #ffb5cc40;font:600 1.05rem Arial,sans-serif;box-shadow:0 5px 14px #0002}.pin-pad button:active{transform:scale(.94);background:#ffb5cc33}.pin-pad .pin-enter{background:linear-gradient(130deg,#ffd9e7,#ff80ad);color:#521c3b;font-size:1.5rem}.pin-pad .pin-clear{color:#ffc0d5}
+/* Polaroid-style memories */
+.grid{gap:24px;align-items:start}.photo{aspect-ratio:4/5;border:0;border-radius:8px;padding:10px 10px 52px;background:linear-gradient(145deg,#fff9fc,#ffe8f1);box-shadow:0 14px 34px #0004;color:#63324c;transform:rotate(-1.5deg);overflow:visible}.photo:nth-child(2){transform:rotate(1.6deg);margin-top:16px}.photo:nth-child(3){transform:rotate(-.8deg);margin-top:4px}.photo:hover{transform:translateY(-8px) rotate(0) scale(1.025);z-index:3}.photo .placeholder{width:100%;height:100%;border-radius:3px;background:linear-gradient(145deg,#fbd9e7,#f7e5f1);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px}.photo .emoji{font-size:3.3rem}.photo strong{font-size:1.05rem;color:#7c3658}.photo p{color:#875b73}.photo img{inset:10px 10px 52px;width:calc(100% - 20px);height:calc(100% - 62px);border-radius:3px;display:none}.photo.has-image img{display:block}.photo.has-image:after{content:'♡';position:absolute;right:17px;top:15px;font-size:1.6rem;color:white;text-shadow:0 2px 10px #000;z-index:3}.photo:before{content:'memories ♡';position:absolute;bottom:15px;left:0;width:100%;text-align:center;font:italic 1rem Georgia,serif;color:#9a5274;z-index:2}
+.letter p,.letter h3,.letter .sign{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}.letter.typing p,.letter.typing h3,.letter.typing .sign{opacity:1;transform:translateY(0)}.letter.typing p:nth-of-type(1){transition-delay:.25s}.letter.typing p:nth-of-type(2){transition-delay:1s}.letter.typing p:nth-of-type(3){transition-delay:1.8s}.letter.typing p:nth-of-type(4){transition-delay:2.6s}.letter.typing .sign{transition-delay:3.3s}.letter.typing h3{transition-delay:.1s}
+.game-panel{text-align:center}.game-stats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}.game-stats span{padding:9px 13px;border-radius:999px;background:#ffffff0b;border:1px solid #ffb5cc33;font: .85rem Arial,sans-serif;color:#f8dce9}.game-stats b{color:#ff9fc2}.game-arena{height:260px;position:relative;overflow:hidden;border-radius:20px;border:1px dashed #ffb5cc77;background:radial-gradient(ellipse at center,#54204488,#1c0d25);margin:0 auto 18px}.game-intro{position:absolute;inset:0;display:grid;place-items:center;padding:20px;color:#f7cfe0;line-height:1.7}.game-heart{position:absolute;border:0;background:transparent;font-size:2rem;padding:5px;animation:heartPop .35s ease;filter:drop-shadow(0 0 8px #ff79a966)}.game-heart:active{transform:scale(.6)}@keyframes heartPop{from{transform:scale(0) rotate(-30deg)}to{transform:scale(1) rotate(0)}}
+@media(max-width:650px){.grid{gap:18px}.photo,.photo:nth-child(2),.photo:nth-child(3){margin:0;transform:rotate(0)}.pin-pad{gap:7px}.pin-pad button{height:45px}.game-arena{height:230px}}
+
+
+/* Buket digital: bunga pastel bergerak, pita, dan kartu ucapan */
+.bouquet-panel{position:relative;overflow:hidden;text-align:center;background:radial-gradient(ellipse at 50% 0%,#ffb5cc16,transparent 60%),linear-gradient(145deg,#ffffff0d,#ffffff04)}
+.bouquet-stage{position:relative;min-height:300px;display:flex;align-items:center;justify-content:center;margin:8px auto 18px;isolation:isolate}
+.bouquet-glow{position:absolute;width:230px;height:230px;border-radius:50%;background:#ff9fc21c;filter:blur(25px);animation:bouquetGlow 4s ease-in-out infinite;z-index:-1}
+.bouquet{position:relative;width:250px;height:265px;animation:bouquetFloat 4s ease-in-out infinite;transform-origin:50% 90%}
+.bouquet-flower{position:absolute;font-size:clamp(2.3rem,7vw,3.5rem);filter:drop-shadow(0 5px 8px #ff9fc244);transform-origin:50% 90%;animation:flowerSway 3s ease-in-out infinite;z-index:3}
+.bouquet-flower:nth-child(1){left:35px;top:38px;animation-delay:-.4s}.bouquet-flower:nth-child(2){left:88px;top:12px;animation-delay:-1s}.bouquet-flower:nth-child(3){left:145px;top:42px;animation-delay:-.7s}.bouquet-flower:nth-child(4){left:65px;top:76px;animation-delay:-1.4s}.bouquet-flower:nth-child(5){left:125px;top:80px;animation-delay:-.2s}.bouquet-flower:nth-child(6){left:96px;top:48px;animation-delay:-1.8s}
+.bouquet-stem{position:absolute;top:105px;left:50%;width:5px;height:105px;border-radius:9px;background:linear-gradient(90deg,#497b57,#a7d29a,#477b54);transform-origin:top;z-index:1}.bouquet-stem.s2{transform:rotate(-22deg);height:95px}.bouquet-stem.s3{transform:rotate(22deg);height:98px}.bouquet-leaf{position:absolute;top:160px;left:83px;width:35px;height:17px;background:linear-gradient(135deg,#b7dba0,#5d9d6a);border-radius:100% 0 100% 0;transform:rotate(20deg);z-index:2}.bouquet-leaf.l2{left:132px;top:174px;transform:scaleX(-1) rotate(25deg)}
+.bouquet-wrap{position:absolute;left:50%;top:174px;transform:translateX(-50%);width:116px;height:88px;background:linear-gradient(135deg,#ffdce9,#ff9fbe 55%,#e879a3);clip-path:polygon(12% 0,88% 0,66% 100%,34% 100%);filter:drop-shadow(0 8px 7px #0002);z-index:4}.bouquet-ribbon{position:absolute;left:50%;top:194px;transform:translateX(-50%);width:58px;height:20px;border-radius:50%;border:5px solid #fff0f5;z-index:5}.bouquet-ribbon:after{content:'♡';position:absolute;left:18px;top:-7px;color:#fff;font-size:1rem}
+.bouquet-tag{display:inline-block;margin-top:-4px;padding:10px 18px;border-radius:999px;background:#fff0f510;border:1px solid #ffb5cc44;color:#ffe4ef;font:italic 1rem Georgia,serif;letter-spacing:.5px;animation:tagPulse 3s infinite}
+.bouquet-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:18px 0 8px}.bouquet-actions button{border:1px solid #ffb5cc55;border-radius:999px;background:#ffffff0b;color:#ffe9f2;padding:10px 15px;font: .88rem Arial,sans-serif}.bouquet-actions button.active{background:linear-gradient(120deg,#ffd7e5,#ff8eb5);color:#58203d;box-shadow:0 7px 20px #ff79a933}
+.bouquet-note{max-width:520px;margin:14px auto 0;color:#f4cddd;line-height:1.8}.bouquet-note.pop{animation:notePop .6s ease}.petal{position:absolute;top:-25px;z-index:5;pointer-events:none;animation:petalFall var(--duration,4s) linear forwards;font-size:var(--size,18px)}
+@keyframes bouquetFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-9px) rotate(1.5deg)}}@keyframes flowerSway{0%,100%{rotate:-5deg}50%{rotate:7deg}}@keyframes bouquetGlow{0%,100%{transform:scale(.9);opacity:.6}50%{transform:scale(1.12);opacity:1}}@keyframes tagPulse{0%,100%{box-shadow:0 0 0 #ff9fc200}50%{box-shadow:0 0 24px #ff9fc222}}@keyframes notePop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes petalFall{0%{transform:translate3d(0,-10px,0) rotate(0deg);opacity:0}10%{opacity:1}100%{transform:translate3d(var(--drift,30px),330px,0) rotate(420deg);opacity:0}}
+@media(max-width:520px){.bouquet-stage{min-height:275px}.bouquet{transform:scale(.9);margin:-12px}.bouquet-actions button{font-size:.8rem;padding:9px 12px}}
+
+
+/* Pemutar musik mungil dan dekorasi buket ekstra */
+#musicToggle{position:fixed;right:18px;bottom:18px;z-index:12;border:1px solid #ffc1d777;border-radius:999px;padding:12px 17px;background:linear-gradient(135deg,#ffe0ecdd,#ff82b4e8);color:#54203b;box-shadow:0 8px 28px #ff79a944;backdrop-filter:blur(12px);font:600 .9rem Arial,sans-serif;display:none;cursor:pointer;transition:transform .25s,box-shadow .25s}
+#musicToggle:hover{transform:translateY(-3px);box-shadow:0 12px 32px #ff79a966}#musicToggle.playing{animation:musicPulse 2s ease-in-out infinite}
+@keyframes musicPulse{0%,100%{box-shadow:0 8px 28px #ff79a944}50%{box-shadow:0 8px 34px #ff79a988}}
+.bouquet-panel:before,.bouquet-panel:after{content:'✦  ·  ✧  ·  ♡  ·  ✧';position:absolute;color:#ffc8dd88;letter-spacing:12px;pointer-events:none;animation:decorDrift 8s ease-in-out infinite;white-space:nowrap}.bouquet-panel:before{top:24px;left:-10px}.bouquet-panel:after{right:-10px;bottom:110px;animation-delay:-4s}.bouquet-stage:before{content:'';position:absolute;width:270px;height:270px;border:1px solid #ffb5cc35;border-radius:50%;box-shadow:0 0 0 13px #ffb5cc09,0 0 0 27px #ffb5cc06;animation:ringTurn 28s linear infinite}.bouquet-stage:after{content:'🦋';position:absolute;top:40px;right:calc(50% - 145px);font-size:1.5rem;filter:drop-shadow(0 0 8px #ffb5cc);animation:butterflyFloat 3s ease-in-out infinite;z-index:6}.bouquet-wrap:before{content:'for you';position:absolute;left:0;right:0;top:35px;text-align:center;color:#fff8fb;font:italic .72rem Georgia,serif;letter-spacing:1px;transform:rotate(-1deg)}
+@keyframes decorDrift{0%,100%{transform:translateY(0);opacity:.45}50%{transform:translateY(-10px);opacity:1}}@keyframes ringTurn{to{transform:rotate(360deg)}}@keyframes butterflyFloat{0%,100%{transform:translate(0,0) rotate(-8deg)}50%{transform:translate(-8px,-12px) rotate(10deg)}}
+@media(max-width:520px){#musicToggle{right:12px;bottom:12px;padding:10px 13px;font-size:.82rem}.bouquet-stage:before{width:230px;height:230px}}
+
+/* Buket besar: banyak tangkai dan bunga tersusun seperti buket florist */
+.bouquet-stage{min-height:365px}
+.bouquet{width:340px;height:330px;transform-origin:50% 92%}
+.bouquet-flower{font-size:clamp(2rem,6vw,3.15rem);filter:drop-shadow(0 5px 7px #ff9fc266)}
+#bouquetArt .bouquet-flower:nth-child(12){left:16px;top:83px;animation-delay:-.3s}
+#bouquetArt .bouquet-flower:nth-child(13){left:47px;top:43px;animation-delay:-1.1s}
+#bouquetArt .bouquet-flower:nth-child(14){left:78px;top:14px;animation-delay:-.7s}
+#bouquetArt .bouquet-flower:nth-child(15){left:111px;top:45px;animation-delay:-1.5s}
+#bouquetArt .bouquet-flower:nth-child(16){left:145px;top:0;animation-delay:-.4s}
+#bouquetArt .bouquet-flower:nth-child(17){left:178px;top:36px;animation-delay:-1.7s}
+#bouquetArt .bouquet-flower:nth-child(18){left:211px;top:11px;animation-delay:-.8s}
+#bouquetArt .bouquet-flower:nth-child(19){left:244px;top:48px;animation-delay:-1.3s}
+#bouquetArt .bouquet-flower:nth-child(20){left:272px;top:83px;animation-delay:-.2s}
+#bouquetArt .bouquet-flower:nth-child(21){left:69px;top:86px;animation-delay:-1.8s}
+#bouquetArt .bouquet-flower:nth-child(22){left:132px;top:74px;animation-delay:-.9s}
+#bouquetArt .bouquet-flower:nth-child(23){left:199px;top:81px;animation-delay:-1.4s}
+#bouquetArt .bouquet-stem{top:105px;left:50%;height:150px;width:5px}
+#bouquetArt .bouquet-stem.s2{transform:rotate(-38deg);height:145px}
+#bouquetArt .bouquet-stem.s3{transform:rotate(38deg);height:145px}
+#bouquetArt .bouquet-stem.s4{transform:rotate(-24deg);height:155px}
+#bouquetArt .bouquet-stem.s5{transform:rotate(24deg);height:155px}
+#bouquetArt .bouquet-stem.s6{transform:rotate(-12deg);height:160px}
+#bouquetArt .bouquet-stem.s7{transform:rotate(12deg);height:160px}
+#bouquetArt .bouquet-leaf{top:182px;left:72px;width:42px;height:19px}
+#bouquetArt .bouquet-leaf.l2{left:220px;top:190px}
+#bouquetArt .bouquet-leaf.l3{left:112px;top:211px;transform:rotate(-28deg)}
+#bouquetArt .bouquet-leaf.l4{left:185px;top:218px;transform:scaleX(-1) rotate(25deg)}
+#bouquetArt .bouquet-wrap{top:215px;width:158px;height:100px}
+#bouquetArt .bouquet-ribbon{top:234px;width:68px}
+.bouquet-stage:before{width:315px;height:315px}
+@media(max-width:520px){.bouquet-stage{min-height:325px}.bouquet{transform:scale(.82);margin:-25px}.bouquet-stage:before{width:250px;height:250px}}
+/* Kue ulang tahun interaktif */
+.cake-panel{text-align:center;overflow:hidden;position:relative;background:radial-gradient(ellipse at 50% 10%,#ffc4d51e,transparent 65%),linear-gradient(145deg,#ffffff0d,#ffffff04)}
+.cake-scene{height:275px;display:flex;align-items:flex-end;justify-content:center;position:relative;margin:8px auto 12px;isolation:isolate}
+.cake-glow{position:absolute;bottom:25px;width:260px;height:150px;border-radius:50%;background:#ff9fc225;filter:blur(26px);z-index:-1}
+.birthday-cake{position:relative;width:245px;height:210px;animation:cakeBob 4s ease-in-out infinite}
+.cake-plate{position:absolute;bottom:8px;left:0;width:245px;height:20px;border-radius:50%;background:linear-gradient(#fff4f9,#e9a9c4);box-shadow:0 8px 18px #0003}
+.cake-tier{position:absolute;left:24px;width:197px;height:70px;bottom:23px;border-radius:18px 18px 12px 12px;background:linear-gradient(90deg,#e987ad,#ffd2e1 35%,#ffb4ce 72%,#e879a3);box-shadow:inset 0 -10px 0 #dc739b,inset 0 7px 0 #fff0f6;}
+.cake-tier:before{content:'♡  ✦  ♡  ✦  ♡';position:absolute;left:0;right:0;top:31px;text-align:center;color:#fff7fb;font-size:1.1rem;letter-spacing:4px}
+.cake-top{position:absolute;left:37px;bottom:88px;width:171px;height:42px;border-radius:50%;background:linear-gradient(145deg,#fff3f8,#ffb6d0);border:3px solid #ffe6ef}
+.candle{position:absolute;bottom:120px;width:13px;height:43px;border-radius:5px 5px 2px 2px;background:repeating-linear-gradient(135deg,#fff7fb 0 6px,#f28db4 6px 11px);box-shadow:0 2px 4px #0002;z-index:3}
+.candle:nth-of-type(4){left:69px}.candle:nth-of-type(5){left:91px;bottom:130px}.candle:nth-of-type(6){left:116px;bottom:135px}.candle:nth-of-type(7){left:141px;bottom:130px}.candle:nth-of-type(8){left:163px}
+.flame{position:absolute;left:2px;top:-19px;width:10px;height:17px;border-radius:70% 30% 65% 35%;background:radial-gradient(circle at 40% 70%,#fff8b5 0 18%,#ffc34d 45%,#ff7a45 75%);transform:rotate(4deg);filter:drop-shadow(0 0 7px #ffb43c);animation:flameDance .55s ease-in-out infinite alternate;transform-origin:50% 100%}
+.candle.blown .flame{opacity:0;transform:translateY(-12px) scale(.3);transition:opacity .25s,transform .3s}
+.cake-sprinkle{position:absolute;z-index:2;color:#fff8fc;font-size:1.2rem;top:15px;left:28px}.cake-sprinkle.s2{left:auto;right:28px;top:40px}.cake-sprinkle.s3{left:0;top:105px}
+.cake-wish{min-height:28px;color:#f7ccdf;line-height:1.7;margin:12px auto 18px;max-width:500px}
+@keyframes cakeBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}@keyframes flameDance{from{transform:rotate(-5deg) scale(.95)}to{transform:rotate(6deg) scale(1.08)}}
+
+
+/* Penyempurnaan: semua bunga dirangkai rapat menjadi satu buket utuh */
+#bouquetArt{width:340px;height:330px}
+#bouquetArt .bouquet-flower{z-index:5;text-shadow:0 2px 4px #5c243522}
+#bouquetArt .bouquet-flower:nth-child(12){left:34px;top:72px}
+#bouquetArt .bouquet-flower:nth-child(13){left:65px;top:40px}
+#bouquetArt .bouquet-flower:nth-child(14){left:98px;top:17px}
+#bouquetArt .bouquet-flower:nth-child(15){left:126px;top:52px}
+#bouquetArt .bouquet-flower:nth-child(16){left:151px;top:5px}
+#bouquetArt .bouquet-flower:nth-child(17){left:183px;top:38px}
+#bouquetArt .bouquet-flower:nth-child(18){left:214px;top:18px}
+#bouquetArt .bouquet-flower:nth-child(19){left:242px;top:50px}
+#bouquetArt .bouquet-flower:nth-child(20){left:267px;top:77px}
+#bouquetArt .bouquet-flower:nth-child(21){left:82px;top:83px}
+#bouquetArt .bouquet-flower:nth-child(22){left:151px;top:75px}
+#bouquetArt .bouquet-flower:nth-child(23){left:211px;top:83px}
+#bouquetArt .bouquet-stem{top:104px;left:50%;height:155px;z-index:1}
+#bouquetArt .bouquet-stem.s2{transform:rotate(-25deg);height:150px}
+#bouquetArt .bouquet-stem.s3{transform:rotate(25deg);height:150px}
+#bouquetArt .bouquet-stem.s4{transform:rotate(-16deg);height:158px}
+#bouquetArt .bouquet-stem.s5{transform:rotate(16deg);height:158px}
+#bouquetArt .bouquet-stem.s6{transform:rotate(-8deg);height:165px}
+#bouquetArt .bouquet-stem.s7{transform:rotate(8deg);height:165px}
+#bouquetArt .bouquet-wrap{top:210px;width:176px;height:108px;z-index:6;background:linear-gradient(120deg,#fff0f5 0%,#ffc5d9 24%,#ff91b6 52%,#ffd8e6 76%,#e975a0 100%);filter:drop-shadow(0 10px 10px #0003)}
+#bouquetArt .bouquet-wrap:after{content:'';position:absolute;inset:8px 16px 0;border-left:1px solid #fff8;border-right:1px solid #fff6;clip-path:polygon(0 0,100% 0,65% 100%,35% 100%);background:linear-gradient(90deg,#ffffff20,#ffffff70,#ffffff15)}
+#bouquetArt .bouquet-ribbon{top:231px;width:74px;height:24px;z-index:7;background:#e96f9c;border-color:#ffeaf2;box-shadow:0 3px 8px #9c315c55}
+#bouquetArt .bouquet-leaf{z-index:3}
+@media(max-width:520px){#bouquetArt{transform:scale(.82);margin:-25px}}
+
+
+/* Rangkaian buket terpadu: kertas kipas, bunga rapat, pita kotak-kotak, dan amplop seperti referensi */
+.bouquet-stage{min-height:440px;padding-bottom:28px;background:radial-gradient(ellipse at 50% 58%,#fff3df12,transparent 65%)}
+.bouquet{width:360px;height:385px;}
+.bouquet-paper{position:absolute;top:28px;height:225px;width:155px;background:#f7dfbd;border:2px solid #c2a27a;box-shadow:0 5px 12px #0002;z-index:0;opacity:.96}
+.bouquet-paper.paper-left{left:24px;transform:rotate(-25deg);clip-path:polygon(0 5%,100% 0,82% 100%,24% 86%);background:linear-gradient(135deg,#fae7c9,#e8c99f)}
+.bouquet-paper.paper-center{left:103px;top:8px;width:155px;height:245px;transform:rotate(2deg);clip-path:polygon(8% 0,100% 9%,84% 100%,0 84%);background:linear-gradient(135deg,#fff0d8,#e9d0aa)}
+.bouquet-paper.paper-right{right:17px;top:35px;transform:rotate(24deg);clip-path:polygon(0 0,100% 6%,77% 91%,15% 100%);background:linear-gradient(135deg,#f6dfbd,#ead0a9)}
+#bouquetArt .bouquet-flower{font-size:clamp(2rem,6vw,3.05rem);filter:drop-shadow(0 3px 3px #683d2a44)}
+#bouquetArt .bouquet-wrap{top:220px;width:170px;height:115px;background:linear-gradient(135deg,#e9d8b8,#fff1d9 48%,#d8c39c);clip-path:polygon(0 0,100% 0,70% 100%,30% 100%);border:1px solid #c6ab82}
+#bouquetArt .bouquet-wrap:before{content:'✿  ❀  ✿';top:43px;color:#a76e64;font-size:1rem;letter-spacing:3px}
+#bouquetArt .bouquet-ribbon{top:247px;width:90px;height:28px;border:5px solid #f3f1d9;background:#9ab48a;border-radius:50%;box-shadow:0 2px 5px #0002}
+#bouquetArt .bouquet-ribbon:before{content:'';position:absolute;left:-29px;top:-9px;width:35px;height:35px;background:#d8e4c9;border:3px solid #9ab48a;transform:rotate(35deg);clip-path:polygon(0 0,100% 0,80% 100%,40% 75%)}
+#bouquetArt .bouquet-ribbon:after{content:'';left:40px;top:-9px;width:35px;height:35px;background:#d8e4c9;border:3px solid #9ab48a;transform:rotate(-35deg);clip-path:polygon(0 0,100% 0,60% 75%,20% 100%)}
+#bouquetArt .bouquet-envelope{position:absolute;z-index:6;left:50%;top:328px;transform:translateX(-50%);width:190px;height:82px;background:#c9a27a;border:2px solid #9b7956;border-radius:3px;box-shadow:0 6px 12px #0002;display:flex;align-items:center;justify-content:center;color:#6d855d}
+#bouquetArt .bouquet-envelope:before{content:'';position:absolute;inset:0;background:#e1c29b;clip-path:polygon(0 0,50% 58%,100% 0);border-bottom:1px solid #9b7956}
+#bouquetArt .bouquet-envelope span{position:absolute;top:13px;font-size:1rem;letter-spacing:5px;color:#8c9b68;z-index:1}
+#bouquetArt .bouquet-envelope b{position:absolute;bottom:13px;left:calc(50% - 13px);width:26px;height:26px;display:grid;place-items:center;background:#f4d9b4;border:1px solid #b38b68;border-radius:50%;color:#d94a5f;font:1rem Arial,sans-serif;z-index:2}
+.bouquet-stage:before{width:340px;height:340px}
+@media(max-width:520px){.bouquet-stage{min-height:395px}.bouquet{transform:scale(.82);margin:-25px}.bouquet-stage:before{width:265px;height:265px}}
+
+</style>
+</head>
+<body>
+<div id="progressBar" aria-hidden="true"></div><div id="floaties" aria-hidden="true"></div><button id="musicToggle" type="button" aria-label="Nyalakan atau matikan musik" title="Musik" aria-pressed="false">♫</button>
+
+<div id="lockScreen">
+  <div class="lock-card" id="lockCard">
+    <span class="lock-heart" id="lockHeart">🔐</span>
+    <div class="kicker">Rahasia kecil untukmu</div>
+    <h2>Masukkan PIN Rahasia 💌</h2>
+    <p>Enam angka kecil untuk membuka kejutan manis ini. Kamu pasti tahu PIN-nya! 💗</p>
+    <form id="lockForm">
+      <input id="passwordInput" type="password" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" placeholder="••••••" autocomplete="off" aria-label="PIN enam angka" required readonly>
+      <div class="pin-dots" id="pinDots" aria-label="PIN terisi"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="pin-pad" id="pinPad" aria-label="Tombol PIN">
+        <button type="button" data-digit="1">1</button><button type="button" data-digit="2">2</button><button type="button" data-digit="3">3</button>
+        <button type="button" data-digit="4">4</button><button type="button" data-digit="5">5</button><button type="button" data-digit="6">6</button>
+        <button type="button" data-digit="7">7</button><button type="button" data-digit="8">8</button><button type="button" data-digit="9">9</button>
+        <button type="button" class="pin-clear" data-action="clear">⌫</button><button type="button" data-digit="0">0</button><button type="submit" class="pin-enter" aria-label="Buka kejutan">♡</button>
+      </div>
+      <button class="btn btn-main" id="unlockBtn" type="submit">Buka kejutan 💖</button>
+    </form>
+    <div id="wrongMsg" aria-live="polite"></div>
+    <p style="font-size:.78rem;margin-bottom:0">Petunjuk: tanyakan pada orang yang mengirim website ini 😉</p>
+  </div>
+</div>
+<div id="loveBloom" class="love-bloom" aria-hidden="true"><div class="bloom-caption">✧ a little love for you ✧</div></div>
+
+<canvas id="stars"></canvas><canvas id="fireworks"></canvas><div id="sparkleLayer" aria-hidden="true"></div>
+<main>
+<section class="hero" id="home"><div class="hero-inner">
+<div class="kicker">Sebuah halaman kecil untuk seseorang yang istimewa</div>
+<span class="heart">💗</span>
+<h1>Happy Birthday,<br><em id="heroName">Sayangku</em></h1>
+<p class="subtitle">Hari ini dunia punya alasan lebih untuk tersenyum, karena seseorang seindah kamu pernah hadir dan membuat hidupku lebih berarti.</p>
+<div class="btns">
+<button class="btn btn-main" id="startBtn">Mulai kejutan ✨</button>
+<button class="btn btn-ghost" id="surpriseBtn">Pesan rahasia 🎁</button>
+<div class="surprise-note" id="surpriseNote">Kalau kamu membaca ini, semoga kamu ingat satu hal kecil: kehadiranmu itu berarti. Semoga hari-harimu dipenuhi hal-hal sederhana yang membuatmu tersenyum. Kamu pantas mendapatkan banyak kebahagiaan. 💗🌷</div>
+</div>
+<div class="scroll-hint">SCROLL PERLAHAN ↓</div>
+</div></section>
+<section class="content" id="wish"><h2 class="section-title">Untuk <em>hari bahagiamu</em></h2><p class="section-desc">Ada beberapa kata yang ingin aku sampaikan dari hati yang paling dalam.</p>
+<div class="panel"><div class="message" id="mainMessage">Selamat ulang tahun, sayangku. 🎂
+
+Semoga setiap langkahmu dipenuhi hal baik, setiap lelahmu berujung bahagia, dan setiap impian yang kamu simpan pelan-pelan menjadi nyata.
+
+Terima kasih sudah hadir dan membawa warna indah dalam hidupku. Kamu tidak harus selalu kuat, tidak harus selalu tersenyum. Semoga kamu selalu punya alasan untuk bahagia dan seseorang untuk pulang saat dunia terasa melelahkan.
+
+Hari ini dan seterusnya, aku berharap semesta selalu menjagamu. Semoga umur barumu dipenuhi cinta, kesehatan, rezeki, dan cerita manis yang tak ada habisnya.
+
+Aku sayang kamu, lebih dari yang bisa dijelaskan kata-kata. 💗</div><div class="signature">Dengan cinta, selalu 💌</div></div></section>
+<section class="content" id="photos"><h2 class="section-title">Potongan <em>cerita kita</em> 📸</h2><p class="section-desc">Kenangan manis yang disimpan dalam tiga bingkai.  💗</p>
+<div class="grid">
+<div class="photo" id="slot1"><img src="foto1.jpg" alt="Foto kenangan pertama"><div class="placeholder"><div class="emoji">🌷</div><strong>Momen favorit</strong><p>Foto senyum termanis</p></div></div>
+<div class="photo" id="slot2"><img src="foto2.jpg" alt="Foto kenangan kedua"><div class="placeholder"><div class="emoji">🌙</div><strong>Waktu bersama</strong><p>Kenangan yang ingin diulang</p></div></div>
+<div class="photo" id="slot3"><img src="foto3.jpg" alt="Foto kenangan ketiga"><div class="placeholder"><div class="emoji">💞</div><strong>Selalu istimewa</strong><p>Hal sederhana yang berarti</p></div></div>
+</div>
+<p class="photo-help" style="text-align:center;margin-top:22px">♡ Ganti foto cukup dengan menaruh gambar baru di folder website dan memakai nama file yang sama. ♡</p></section>
+<section class="content" id="letterSection"><h2 class="section-title">Ada surat <em>untukmu</em> 💌</h2><p class="section-desc">Surat kecil yang menunggu untuk dibuka.</p>
+<div class="panel letter-wrap"><span class="envelope">💌</span><button class="btn btn-main" id="letterBtn">Buka surat rahasia</button>
+<div class="letter" id="letter"><h3>Untuk orang kesayanganku 💗</h3><p>Sayang, kalau suatu hari kamu merasa lelah, ingatlah bahwa kamu sudah berjalan sejauh ini dan aku bangga padamu. Kamu berharga, bahkan di hari-hari ketika kamu merasa tidak melakukan apa-apa.</p><p>Di hari ulang tahunmu ini, aku tidak hanya berharap kamu mendapatkan apa yang kamu inginkan. Aku juga berharap kamu selalu merasa dicintai, dihargai, didengarkan, dan diterima apa adanya.</p><p>Terima kasih untuk setiap tawa, cerita, dan momen kecil yang membuat hari biasa terasa istimewa. Semoga kita punya lebih banyak kenangan untuk disimpan dan lebih banyak alasan untuk saling tersenyum.</p><p>Selamat ulang tahun, cinta. Semoga bahagia selalu menemukan jalan pulang kepadamu. Aku akan selalu mendoakan yang terbaik untukmu. 🥹❤️</p><p class="sign">Peluk jauh dan banyak cinta,<br>orang yang menyayangimu 💋</p></div></div></section>
+<section class="content" id="birthdayCake"><h2 class="section-title">Make a wish <em>tiup lilinnya</em> 🎂</h2><p class="section-desc">Pejamkan mata sebentar, buat satu permohonan, lalu tiup lilin ulang tahunmu. ✨</p><div class="panel cake-panel"><div class="cake-scene"><div class="cake-glow"></div><div class="birthday-cake" id="birthdayCakeArt" aria-label="Kue ulang tahun dengan lima lilin"><span class="cake-sprinkle">✦</span><span class="cake-sprinkle s2">♡</span><span class="cake-sprinkle s3">✧</span><div class="cake-plate"></div><div class="cake-tier"></div><div class="cake-top"></div><div class="candle"><span class="flame"></span></div><div class="candle"><span class="flame"></span></div><div class="candle"><span class="flame"></span></div><div class="candle"><span class="flame"></span></div><div class="candle"><span class="flame"></span></div></div></div><button class="btn btn-main" id="blowCandles">Tiup lilin 🎂💨</button><p class="cake-wish" id="cakeWish" aria-live="polite">Semoga semua harapan baikmu satu per satu menjadi nyata. 💗</p></div></section>
+<section class="content" id="cuteGame"><h2 class="section-title">Mini game <em>tangkap hati</em> 💘</h2><p class="section-desc">Tangkap hati-hati kecil yang muncul sebelum waktunya habis. Siap-siap, ya!</p>
+<div class="panel game-panel"><div class="game-stats"><span>⏳ Waktu: <b id="gameTime">15</b> dtk</span><span>💗 Skor: <b id="gameScore">0</b></span><span>🏆 Rekor: <b id="gameBest">0</b></span></div><div id="gameArena" class="game-arena"><div class="game-intro" id="gameIntro">Tekan mulai, lalu tangkap hati sebanyak-banyaknya! 💕</div></div><button class="btn btn-main" id="gameStart">Mulai bermain 🎀</button><p class="count-note" id="gameMessage" aria-live="polite">Setiap hati yang disentuh menambah satu poin!</p></div></section>
+<section class="content" style="text-align:center;padding-top:10px"><button class="btn btn-main" id="fireBtn">Nyalakan kembang api 🎆</button><p class="count-note">Semoga semua doa baik hari ini menemukan jalannya.</p></section>
+</main>
+<footer>Dibuat dengan <span>♥</span> untuk hari yang tak terlupakan<br><span style="font-size:.72rem">Semoga harimu semanis senyummu ✨</span></footer><div class="toast" id="toast"></div>
+<script>
+const $=id=>document.getElementById(id);
+
+function toast(msg){const t=$('toast');t.textContent=msg;t.style.display='block';clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.style.display='none',2600)}
+$('startBtn').addEventListener('click',()=>{ $('wish').scrollIntoView({behavior:'smooth'}); fireworksBurst(); });
+$('letterBtn').addEventListener('click',()=>{const l=$('letter');l.classList.toggle('open');$('letterBtn').textContent=l.classList.contains('open')?'Tutup surat 💗':'Buka surat rahasia';if(l.classList.contains('open')){l.classList.remove('typing');void l.offsetWidth;l.classList.add('typing');fireworksBurst();}else l.classList.remove('typing');});
+$('fireBtn').addEventListener('click',()=>{fireworksBurst(8);toast('Semoga semua doa baik menjadi nyata! 💖')});
+// Foto kenangan dimuat dari file di folder yang sama dengan HTML.
+['foto1.jpg','foto2.jpg','foto3.jpg'].forEach((file,index)=>{const slot=$('slot'+(index+1));const img=slot.querySelector('img');const show=()=>slot.classList.add('has-image');const hide=()=>slot.classList.remove('has-image');img.addEventListener('load',show);img.addEventListener('error',hide);if(img.complete&&img.naturalWidth>0)show();});
+// Twinkling star field
+const starCanvas=$('stars'),sctx=starCanvas.getContext('2d');let stars=[];
+function resizeStars(){starCanvas.width=innerWidth*devicePixelRatio;starCanvas.height=innerHeight*devicePixelRatio;starCanvas.style.width=innerWidth+'px';starCanvas.style.height=innerHeight+'px';sctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);stars=Array.from({length:Math.min(130,Math.floor(innerWidth/7))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.5+.3,a:Math.random(),v:Math.random()*.012+.003}));}
+function drawStars(){sctx.clearRect(0,0,innerWidth,innerHeight);for(const s of stars){s.a+=s.v;if(s.a>1||s.a<.15)s.v*=-1;sctx.beginPath();sctx.arc(s.x,s.y,s.r,0,Math.PI*2);sctx.fillStyle='rgba(255,220,239,'+Math.max(.1,Math.min(.8,s.a))+')';sctx.fill()}requestAnimationFrame(drawStars)}
+addEventListener('resize',resizeStars);resizeStars();drawStars();
+// Canvas fireworks
+const fc=$('fireworks'),fctx=fc.getContext('2d');let particles=[];
+function resizeFire(){fc.width=innerWidth*devicePixelRatio;fc.height=innerHeight*devicePixelRatio;fc.style.width=innerWidth+'px';fc.style.height=innerHeight+'px';fctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}
+addEventListener('resize',resizeFire);resizeFire();
+function burst(x=Math.random()*innerWidth,y=innerHeight*(.18+Math.random()*.48)){const hue=Math.random()*360;for(let i=0;i<85;i++){const a=Math.PI*2*i/85,sp=1+Math.random()*4;particles.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:1,decay:.008+Math.random()*.012,color:'hsl('+hue+',95%,70%)',r:1+Math.random()*2})}}
+function fireworksBurst(n=4){for(let i=0;i<n;i++)setTimeout(()=>burst(innerWidth*(.15+Math.random()*.7),innerHeight*(.18+Math.random()*.42)),i*240)}
+function drawFire(){fctx.clearRect(0,0,innerWidth,innerHeight);particles=particles.filter(p=>p.life>0);for(const p of particles){p.x+=p.vx;p.y+=p.vy;p.vy+=.025;p.vx*=.99;p.life-=p.decay;fctx.globalAlpha=Math.max(0,p.life);fctx.fillStyle=p.color;fctx.beginPath();fctx.arc(p.x,p.y,p.r,0,Math.PI*2);fctx.fill()}fctx.globalAlpha=1;requestAnimationFrame(drawFire)}drawFire();
+
+
+// Scroll progress
+const progressBar=$('progressBar');
+function updateScrollUI(){const max=document.documentElement.scrollHeight-innerHeight;progressBar.style.width=(max>0?(scrollY/max)*100:0)+'%'}
+addEventListener('scroll',updateScrollUI,{passive:true});updateScrollUI();
+// Elemen muncul lembut saat masuk layar
+const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target)}}),{threshold:.12});
+document.querySelectorAll('section.content,.panel,.photo').forEach(el=>{el.classList.add('reveal');revealObserver.observe(el)});
+// Hati, bintang, dan bunga kecil yang melayang secara berkala
+const floaties=$('floaties'),floatEmojis=['💗','💕','✨','🌸','♡','🫧','💖'];
+function spawnFloaty(){if(document.hidden)return;const el=document.createElement('span');el.className='floaty';el.textContent=floatEmojis[Math.floor(Math.random()*floatEmojis.length)];el.style.left=Math.random()*100+'%';el.style.fontSize=(14+Math.random()*18)+'px';const duration=7+Math.random()*7;el.style.animationDuration=duration+'s';floaties.appendChild(el);setTimeout(()=>el.remove(),duration*1000)}
+setInterval(spawnFloaty,850);for(let i=0;i<7;i++)setTimeout(spawnFloaty,i*240);
+$('surpriseBtn').addEventListener('click',()=>{const note=$('surpriseNote');note.classList.toggle('show');$('surpriseBtn').textContent=note.classList.contains('show')?'Simpan pesannya 💗':'Pesan rahasia 🎁';if(note.classList.contains('show')){fireworksBurst(3);note.scrollIntoView({behavior:'smooth',block:'center'})}});
+// Upload foto dengan validasi ukuran dan slot yang konsisten
+
+
+// Extra playful effects: sparkles on click and a short pastel confetti shower.
+const sparkleLayer=$('sparkleLayer');
+function sparkleAt(x,y){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const symbols=['✨','💗','♡','🌸','✦','🫧'];for(let i=0;i<5;i++){const el=document.createElement('span');el.className='click-spark';el.textContent=symbols[Math.floor(Math.random()*symbols.length)];el.style.left=x+'px';el.style.top=y+'px';el.style.setProperty('--dx',(Math.random()*100-50)+'px');el.style.setProperty('--dy',(Math.random()*-100-15)+'px');sparkleLayer.appendChild(el);setTimeout(()=>el.remove(),850)}}
+document.addEventListener('click',e=>{if(e.target.closest('button')||e.target.closest('.photo'))sparkleAt(e.clientX,e.clientY)});
+function confettiShower(amount=65){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const bits=['♥','✦','✧','🌸','💗'];for(let i=0;i<amount;i++){const el=document.createElement('span');el.className='confetti';el.textContent=bits[Math.floor(Math.random()*bits.length)];el.style.left=Math.random()*100+'vw';el.style.color=['#ff79a9','#ffd9a0','#ffb5cc','#fff0f5'][Math.floor(Math.random()*4)];el.style.fontSize=(10+Math.random()*15)+'px';el.style.setProperty('--drift',(Math.random()*180-90)+'px');el.style.animationDuration=(3+Math.random()*4)+'s';document.body.appendChild(el);setTimeout(()=>el.remove(),7500)}}
+// Celebrate each major interaction with a little extra magic.
+$('startBtn').addEventListener('click',()=>confettiShower(45));
+$('fireBtn').addEventListener('click',()=>confettiShower(90));
+$('letterBtn').addEventListener('click',()=>{if($('letter').classList.contains('open'))confettiShower(28)});
+
+// Rangkaian bunga membentuk hati ketika kata sandi berhasil dimasukkan.
+function showLoveFlowers(){
+  const bloom=$('loveBloom');
+  bloom.querySelectorAll('.bloom-flower').forEach(el=>el.remove());
+  bloom.classList.remove('show');
+  void bloom.offsetWidth;
+  const flowers=['🌸','🌷','🌺','💗','🌸','🌼','💕'];
+  const total=34;
+  for(let i=0;i<total;i++){
+    const t=(Math.PI*2*i)/total;
+    const hx=16*Math.pow(Math.sin(t),3);
+    const hy=13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t);
+    const flower=document.createElement('span');
+    flower.className='bloom-flower';
+    flower.textContent=flowers[i%flowers.length];
+    flower.style.setProperty('--x',(hx*8.1)+'px');
+    flower.style.setProperty('--y',(-hy*8.1)+'px');
+    flower.style.setProperty('--delay',(i*0.035)+'s');
+    bloom.appendChild(flower);
+  }
+  bloom.classList.add('show');
+  setTimeout(()=>{bloom.classList.remove('show');bloom.querySelectorAll('.bloom-flower').forEach(el=>el.remove())},5000);
+}
+
+// Musik: file musik.mp3 diletakkan satu folder dengan file HTML ini.
+// Untuk mengganti lagu, ganti file musik.mp3 dengan lagu lain bernama sama,
+// atau ubah nilai MUSIC_FILE di bawah menjadi nama file audio di folder ini.
+let birthdayAudio=null, musicTimer=null, musicOn=false, musicStep=0;
+const MUSIC_FILE = 'musik.mp3';
+const chosenAudio = new Audio(MUSIC_FILE);
+chosenAudio.loop = true;
+chosenAudio.preload = 'auto';
+const melody=[659.25,783.99,880,783.99,659.25,587.33,523.25,587.33,659.25,783.99,659.25,587.33,523.25,587.33,659.25,523.25];
+function playMusicNote(){if(!birthdayAudio||birthdayAudio.state==='closed'||!musicOn)return;const now=birthdayAudio.currentTime;const freq=melody[musicStep%melody.length];musicStep++;const osc=birthdayAudio.createOscillator(),gain=birthdayAudio.createGain();osc.type='sine';osc.frequency.setValueAtTime(freq,now);gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(.055,now+.06);gain.gain.exponentialRampToValueAtTime(.0001,now+.52);osc.connect(gain);gain.connect(birthdayAudio.destination);osc.start(now);osc.stop(now+.54);if(musicStep%4===1){const bell=birthdayAudio.createOscillator(),bg=birthdayAudio.createGain();bell.type='triangle';bell.frequency.setValueAtTime(freq/2,now);bg.gain.setValueAtTime(.0001,now);bg.gain.exponentialRampToValueAtTime(.018,now+.05);bg.gain.exponentialRampToValueAtTime(.0001,now+.75);bell.connect(bg);bg.connect(birthdayAudio.destination);bell.start(now);bell.stop(now+.76)}}
+function updateMusicButton(){const b=$('musicToggle');b.style.display=document.querySelector('#lockScreen.unlocked')?'block':'none';b.textContent=musicOn?'♫':'♪';b.classList.toggle('playing',musicOn);b.setAttribute('aria-pressed',String(musicOn));b.title=musicOn?'Jeda musik':'Putar musik';b.setAttribute('aria-label',musicOn?'Jeda musik':'Putar musik')}
+async function startBirthdayMusic(){
+  if(musicOn){updateMusicButton();return;}
+  musicOn=true;
+  try{
+    // Coba lagu MP3 lokal; jika belum ada, mainkan melodi music-box bawaan.
+    chosenAudio.currentTime=0;
+    await chosenAudio.play();
+  }catch(err){
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC){musicOn=false;updateMusicButton();return;}
+    try{if(!birthdayAudio||birthdayAudio.state==='closed')birthdayAudio=new AC();if(birthdayAudio.state==='suspended')await birthdayAudio.resume();playMusicNote();musicTimer=setInterval(playMusicNote,420);}
+    catch(e){musicOn=false;console.warn('Musik tidak dapat dimulai otomatis. Tekan ikon musik untuk mencoba lagi.',e)}
+  }
+  updateMusicButton();
+}
+function stopBirthdayMusic(){musicOn=false;clearInterval(musicTimer);musicTimer=null;chosenAudio.pause();if(birthdayAudio&&birthdayAudio.state!=='closed')birthdayAudio.suspend().catch(()=>{});updateMusicButton()}
+$('musicToggle').addEventListener('click',()=>{if(musicOn)stopBirthdayMusic();else startBirthdayMusic()});
+
+// PIN enam angka: ubah nilainya di sini bila ingin memakai PIN lain.
+const PASSWORD_BIRTHDAY = '123456';
+function refreshPinDots(){const value=$('passwordInput').value;[...$('pinDots').children].forEach((dot,i)=>dot.classList.toggle('filled',i<value.length));}
+$('pinPad').addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn)return;const input=$('passwordInput');if(btn.dataset.digit!==undefined&&input.value.length<6)input.value+=btn.dataset.digit;else if(btn.dataset.action==='clear')input.value=input.value.slice(0,-1);refreshPinDots();if(input.value.length===6){if(input.value===PASSWORD_BIRTHDAY)startBirthdayMusic();setTimeout(()=>$('lockForm').requestSubmit(),180)}});
+
+$('lockForm').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const entered = $('passwordInput').value;
+  const card = $('lockCard');
+  if (entered === PASSWORD_BIRTHDAY) {
+    startBirthdayMusic();
+    $('lockHeart').textContent = '💖';
+    $('wrongMsg').textContent = 'Yeay, benar! Membuka kejutan... ✨';
+    showLoveFlowers();
+    fireworksBurst(6);
+    setTimeout(() => {
+      $('lockScreen').classList.add('unlocked');
+      updateMusicButton();
+      toast('Kejutan terbuka! Selamat menikmati 💗');
+    }, 650);
+  } else {
+    card.classList.remove('shake');
+    void card.offsetWidth;
+    card.classList.add('shake');
+    $('lockHeart').textContent = ['🙈','🐣','🐸','🤪','🥺'][Math.floor(Math.random()*5)];
+    $('wrongMsg').textContent = ['Ups! Salah nih, coba lagi ya 😝','Hampir... tapi belum tepat! 🐣','Kata sandinya ngumpet, coba lagi! 🙈','Eits, belum boleh masuk 😜'][Math.floor(Math.random()*4)];
+    $('passwordInput').value = '';
+    refreshPinDots();
+    $('passwordInput').focus();
+    setTimeout(() => { $('lockHeart').textContent = '🔐'; card.classList.remove('shake'); }, 900);
+  }
+});
+
+
+
+
+// Interaksi tiup lilin ulang tahun.
+$('blowCandles').addEventListener('click',()=>{
+ const candles=[...document.querySelectorAll('#birthdayCakeArt .candle')];
+ const alreadyBlown=candles.every(c=>c.classList.contains('blown'));
+ if(alreadyBlown){candles.forEach(c=>c.classList.remove('blown'));$('blowCandles').textContent='Tiup lilin 🎂💨';$('cakeWish').textContent='Lilin menyala lagi! Buat permohonan baru, lalu tiup sekali lagi. ✨';return;}
+ candles.forEach((c,i)=>setTimeout(()=>c.classList.add('blown'),i*100));
+ $('blowCandles').textContent='Nyalakan lilin lagi 🕯️';
+ $('cakeWish').textContent='Yeay! 🎉 Semoga panjang umur, sehat, bahagia, dan semua impian indahmu tercapai. Selamat ulang tahun! 💗';
+ confettiShower(55);fireworksBurst(4);toast('Wish made! Selamat ulang tahun! 🎂💖');
+});
+
+// Mini game lucu: tangkap hati sebelum timer habis.
+let gameInterval=null, spawnInterval=null, gameRunning=false, gameScore=0, gameSeconds=15;
+let gameBest=Number(localStorage.getItem('birthdayHeartBest')||0);$('gameBest').textContent=gameBest;
+function spawnGameHeart(){if(!gameRunning)return;const arena=$('gameArena');const h=document.createElement('button');h.type='button';h.className='game-heart';h.textContent=['💗','💖','💕','🌸','✨'][Math.floor(Math.random()*5)];h.setAttribute('aria-label','Tangkap hati');const maxX=Math.max(0,arena.clientWidth-48),maxY=Math.max(0,arena.clientHeight-52);h.style.left=Math.random()*maxX+'px';h.style.top=Math.random()*maxY+'px';h.addEventListener('click',()=>{if(!gameRunning)return;gameScore++;$('gameScore').textContent=gameScore;h.textContent=['💥','✨','💞','+1'][Math.floor(Math.random()*4)];h.style.transform='scale(1.5)';setTimeout(()=>h.remove(),100);if(gameScore>gameBest){gameBest=gameScore;$('gameBest').textContent=gameBest;localStorage.setItem('birthdayHeartBest',gameBest)}});arena.appendChild(h);setTimeout(()=>h.remove(),1250)}
+function endHeartGame(){gameRunning=false;clearInterval(gameInterval);clearInterval(spawnInterval);$('gameArena').querySelectorAll('.game-heart').forEach(h=>h.remove());$('gameIntro').style.display='grid';$('gameIntro').textContent=`Waktu habis! Kamu berhasil menangkap ${gameScore} hati. ${gameScore>=10?'Wah, jago banget! 🏆':'Coba lagi untuk skor lebih tinggi! 💕'}`;$('gameStart').textContent='Main lagi 💘';$('gameMessage').textContent='Terima kasih sudah bermain! Kirim senyum kecil untuk hari ini 🌷';if(gameScore>=10)confettiShower(35)}
+$('gameStart').addEventListener('click',()=>{clearInterval(gameInterval);clearInterval(spawnInterval);gameRunning=true;gameScore=0;gameSeconds=15;$('gameScore').textContent='0';$('gameTime').textContent='15';$('gameIntro').style.display='none';$('gameArena').querySelectorAll('.game-heart').forEach(h=>h.remove());$('gameStart').textContent='Ayo tangkap! 💗';$('gameMessage').textContent='Cepat sentuh hati yang muncul!';spawnGameHeart();spawnInterval=setInterval(spawnGameHeart,550);gameInterval=setInterval(()=>{gameSeconds--;$('gameTime').textContent=gameSeconds;if(gameSeconds<=0)endHeartGame()},1000)});
+
+</script>
+</body>
+</html>
